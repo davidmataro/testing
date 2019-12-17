@@ -1,3 +1,3 @@
 # testing 
 
-B2B Router is a company .
+B2B Router is a company.
