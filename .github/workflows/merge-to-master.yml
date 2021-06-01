@@ -17,3 +17,5 @@ jobs:
         with:
           url: https://dev.b2brouter.net
           method: 'GET'
+          username: ${{ secrets.B2BDOCS_USER }}
+          password: ${{ secrets.B2BDOCS_PASS }}
