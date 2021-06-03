@@ -1,4 +1,4 @@
-name: CI
+name: DEPLOYDEV
 
 on:
   pull_request:
@@ -6,18 +6,16 @@ on:
       - closed
     branches:
       - master
- 
+
 jobs:
-  build:
-
+  deployment:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy to dev
-      if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-      run: echo Deploy t dev after merge to master!
-    - name: 
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - name: Deploy to dev
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: https://dev.b2brouter.net
+          method: 'GET'
+          username: ${{ secrets.B2BDOCS_USER }}
+          password: ${{ secrets.B2BDOCS_PASS }}
